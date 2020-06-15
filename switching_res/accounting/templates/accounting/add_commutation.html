@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+    Добавление коммутации : {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+<h1>Добавить коммутацию</h1>
+<form action="{% url 'jur_form' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary btn-block"> Добавить коммутацию</button>
+</form>
+
+
+{% endblock %}

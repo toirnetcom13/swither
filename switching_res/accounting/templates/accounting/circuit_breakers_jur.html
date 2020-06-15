@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{title}} : {{ block.super }}
+{% endblock %}
+
+{% block branch %}
+    {% for i in branchs %}
+    <a href="/Breakers_branch_jur/{{ i.pk }}" class="list-group-item list-group-item-action active"> {{ i.name }}</a>
+    {% endfor %}
+{% endblock %}
+
+
+{% block substation %}
+<div class="list-group">
+         {% for i in substations %}
+      <a href="/Breakers_substation_jur/{{ i.pk }}/" class="list-group-item list-group-item-action">{{ i.name }}</a>
+      {% endfor %}
+</div>
+<br>
+{% endblock %}
+
+
+{% block content %}
+
+<h1>{{title}}</h1>
+
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col"> id </th>
+        <th scope="col"> Филиал </th>
+        <th scope="col"> Подстанция </th>
+        <th scope="col"> Диспетчерское наименование </th>
+        <th scope="col"> Тип выключателя </th>
+        <th scope="col"> Остаточный коммутационный ресурс, % </th>
+        <th scope="col"> Остаточный механический ресурс, % </th>
+
+
+    </tr>
+    </thead>
+    {% for i in circuit_breakers %}
+    <tbody>
+    <tr>
+
+        <th scope="row">{{i.id}}</th>
+        <td>{{i.branch}}</td>
+        <td>{{i.name_of_substation}}</td>
+        <td>{{i.dispatcher_name}}</td>
+        <td>{{i.switch_type}}</td>
+        <td>{{i.switching_resource}}</td>
+        <td>{{i.mechanical_resource}}</td>
+
+
+    </tr>
+
+    </tbody>
+    {% endfor %}
+</table>
+
+{% endblock %}
